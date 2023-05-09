@@ -1,0 +1,6 @@
+.banner { 
+    display: grid;
+    background-color: pink;
+    
+    grid-template-columns: 1fr 2fr;
+}
