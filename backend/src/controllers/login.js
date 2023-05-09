@@ -9,7 +9,7 @@ async function login(req, res) {
 async function newUser(req, res) {
   let data = await databaseService.getUserDB(req.query.username);
   if (data[0].length == 0) {
-    dbHandler.postUserDB(req.query.username);
+    databaseService.postUserDB(req.query.username);
     res.status(201);
   } else {
     res.status(409);

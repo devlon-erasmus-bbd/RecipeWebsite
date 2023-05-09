@@ -8,8 +8,8 @@ const config = {
     authentication: {
         type: 'default',
         options: {
-            userName: DB_USER,
-            password: DB_PASSWORD
+            userName: process.env.DB_USER,
+            password: process.env.DB_PASSWORD
         }
     },
     options: {
