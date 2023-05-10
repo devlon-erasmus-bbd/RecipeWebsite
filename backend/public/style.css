@@ -1,6 +1,26 @@
-.banner { 
+body {
     display: grid;
-    background-color: pink;
-    
-    grid-template-columns: 1fr 2fr;
+}
+
+.login-icon {
+    width: 7%;
+    height: 7%;
+}
+
+article {
+    border-style: solid;
+}
+
+.banner {
+    background-color: bisque;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    align-items: center;
+    justify-content: center;
+}
+
+.content {
+    background-color: aqua;
+    display: grid;
+    justify-content: center;
 }
