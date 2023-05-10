@@ -1,14 +1,14 @@
 'use strict';
-const userService = require('../service/userService');
+const { getUserId } = require('../service/index');
 
-async function getUserId(req, res) {
+async function getUser(req, res) {
 
-  const data = await userService.getUserId(req.query.username);
+  const data = await getUserId(req.query.username);
 
   res.json(data[0]);
   res.end();
 }
 
 module.exports = {
-  getUserId
+  getUser
 };

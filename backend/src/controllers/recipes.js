@@ -1,9 +1,9 @@
 'use strict';
-const recipeService = require('../service/recipeService');
+const { getRecipeList, getUserRecipes, getRecipeIngredients, postRecipe } = require('../service/index');
 
 async function recipeList(req, res) {
     try {
-        const data = await recipeService.getRecipeList();
+        const data = await getRecipeList();
         res.json(data[0]);
     } catch (err) {
         console.log(err);
@@ -14,7 +14,7 @@ async function recipeList(req, res) {
 
 async function userRecipes(req, res) {
     try {
-        const data = await recipeService.getUserRecipes(req.query.username);
+        const data = await getUserRecipes(req.query.username);
         res.json(data[0]);
     } catch (err) {
         console.log(err);
@@ -25,7 +25,7 @@ async function userRecipes(req, res) {
 
 async function recipeIngredients(req, res) {
     try {
-        const data = await recipeService.getRecipeIngredients(req.query.recipeName);
+        const data = await getRecipeIngredients(req.query.recipeName);
         res.json(data[0]);
     } catch (err) {
         console.log(err);
@@ -37,7 +37,7 @@ async function recipeIngredients(req, res) {
 
 async function createRecipe(req, res) {
     try {
-        await recipeService.postRecipe(req.body);
+        await postRecipe(req.body);
         res.status(201);
     } catch (err) {
         console.log(err);
@@ -53,10 +53,3 @@ module.exports = {
     createRecipe,
     userRecipes
 };
-
-// getRecipeList,
-//     getUserRecipes,
-//     postRecipe,
-//     getRecipeId,
-//     postRecipeIngredients,
-//     getRecipeIngredients
