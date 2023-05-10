@@ -1,30 +1,35 @@
 'use strict';
-const databaseService = require('../service/databaseService')
+// const jwt = require('jsonwebtoken');
+// const bcrypt = require('bcryptjs');
 
-async function login(req, res) {
+async function login(req, res, next) {
 
-  res.send('user login');
-}
+  // const { email, password } = req.body;
 
-async function newUser(req, res) {
-  let data = await databaseService.getUserDB(req.query.username);
-  if (data[0].length == 0) {
-    databaseService.postUserDB(req.query.username);
-    res.status(201);
-  } else {
-    res.status(409);
+  try {
+    // // Check if the user exists
+    // const user = await User.findOne({ email });
+
+    // if (!user) {
+    //   return res.status(401).json({ message: 'Invalid email or password' });
+    // }
+
+    // // Compare the password
+    // const isValidPassword = await bcrypt.compare(password, user.password);
+
+    // if (!isValidPassword) {
+    //   return res.status(401).json({ message: 'Invalid email or password' });
+    // }
+
+    // // Create a JWT token
+    // const token = jwt.sign({ userId: user._id }, 'your-secret-key', { expiresIn: '1h' });
+
+    // res.status(200).json({ token });
+  } catch (error) {
+    next(error);
   }
-  res.end();
-}
-
-async function getUserId(req, res) {
-  let data = await databaseService.getUserDB(req.query.username);
-  res.json(data[0]);
-  res.end();
 }
 
 module.exports = {
-  login,
-  newUser,
-  getUserId
+  login
 };
