@@ -1,10 +1,10 @@
 const connection = require('../client/databaseConnection');
-const { postCategory, getCategory } = require('./categoryService');
 const { getUserId } = require('./userService');
+const { postCategory, getCategory } = require('./categoryService')
 
 async function getRecipeList() {
-    let pool = await connection.getPool();
-    let data = await pool.request().query(`SELECT recipe_name, username, category, instructions, picture_location 
+    const pool = await connection.getPool();
+    const data = await pool.request().query(`SELECT recipe_name, username, category, instructions, picture_location 
             FROM Recipes rec 
             JOIN Categories c ON rec.category_id = c.category_id
             JOIN Users u ON rec.user_id = u.user_id`);
@@ -12,8 +12,8 @@ async function getRecipeList() {
 }
 
 async function getUserRecipes(username) {
-    let pool = await connection.getPool();
-    let data = await pool.request().query(`SELECT recipe_name, username, category, instructions, picture_location 
+    const pool = await connection.getPool();
+    const data = await pool.request().query(`SELECT recipe_name, username, category, instructions, picture_location 
             FROM Recipes rec
             JOIN Categories c ON rec.category_id = c.category_id
             JOIN Users u ON rec.user_id = u.user_id
@@ -30,7 +30,7 @@ async function postRecipe(recipeData) {
     category_id = category_id[0][0].category_id;
     user_id = user_id[0][0].user_id;
 
-    let pool = await connection.getPool();
+    const pool = await connection.getPool();
     await pool.request().query(`INSERT INTO Recipes (recipe_name, user_id, category_id, instructions, picture_location)
         VALUES ('${recipeData[0].recipeName}', ${user_id}, ${category_id}, '${recipeData[0].instructions}', '${recipeData[0].pictureLocation}')`);
 
@@ -38,8 +38,8 @@ async function postRecipe(recipeData) {
 }
 
 async function getRecipeId(recipeName) {
-    let pool = await connection.getPool();
-    let data = await pool.request().query(`SELECT recipe_id FROM Recipes
+    const pool = await connection.getPool();
+    const data = await pool.request().query(`SELECT recipe_id FROM Recipes
             WHERE recipe_name = '${recipeName}'`);
     return data.recordsets;
 }
@@ -48,7 +48,7 @@ async function postRecipeIngredients(recipeData) {
     recipeId = await getRecipeId(recipeData[0].recipeName);
     recipeId = recipeId[0][0].recipe_id;
 
-    let pool = await connection.getPool();
+    const pool = await connection.getPool();
 
     recipeData[0].ingredients.forEach(async ingredient => {
         await postIngredient(ingredient.name);
@@ -61,8 +61,8 @@ async function postRecipeIngredients(recipeData) {
 }
 
 async function getRecipeIngredients(recipeName) {
-    let pool = await connection.getPool();
-    let data = await pool.request().query(`SELECT ingredient_name ingredient, measurement FROM Recipes rec 
+    const pool = await connection.getPool();
+    const data = await pool.request().query(`SELECT ingredient_name ingredient, measurement FROM Recipes rec 
             JOIN RecipeIngredients ri ON rec.recipe_id = ri.recipe_id
             JOIN Ingredients i ON ri.ingredient_id = i.ingredient_id
             WHERE recipe_name = '${recipeName}'`);
@@ -70,15 +70,15 @@ async function getRecipeIngredients(recipeName) {
 }
 
 async function postIngredient(ingredient) {
-    let pool = await connection.getPool();
+    const pool = await connection.getPool();
     await pool.request().query(`IF NOT EXISTS (
             SELECT 1 FROM Ingredients WHERE ingredient_name = '${ingredient}')
             INSERT INTO Ingredients (ingredient_name) VALUES ('${ingredient}')`);
 }
 
 async function getIngredientId(ingredient) {
-    let pool = await connection.getPool();
-    let data = await pool.request().query(`SELECT ingredient_id FROM Ingredients
+    const pool = await connection.getPool();
+    const data = await pool.request().query(`SELECT ingredient_id FROM Ingredients
             WHERE Ingredient_name = '${ingredient}'`);
     return data.recordsets;
 }

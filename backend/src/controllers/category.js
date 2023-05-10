@@ -1,9 +1,9 @@
 'use strict';
-const categoryService = require('../service/categoryService')
+const { getCategoryList } = require('../service/index')
 
 async function categoryList(req, res) {
     try {
-        let data = await categoryService.getCategoryList();
+        const data = await getCategoryList();
         res.json(data[0]);
     } catch (err) {
         console.log(err);

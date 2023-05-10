@@ -1,9 +1,9 @@
 'use strict'
-const { postRecipe } = require('../service/recipeService');
+const { postRecipe } = require('../service/index');
 const searchUrl = "https://www.themealdb.com/api/json/v1/1/search.php?s=";
 
 async function searchMealDb(req, res) {
-    let result = [];
+    const result = [];
     try {
         if (req.query.search.length == 0) {
             res.status(500);
@@ -13,7 +13,7 @@ async function searchMealDb(req, res) {
         await fetch(searchUrl + req.query.search)
             .then((response) => response.json())
             .then((data) => {
-                let myMeal = data.meals[0];
+                const myMeal = data.meals[0];
 
                 let meal = {};
                 meal.recipeName = myMeal.strMeal;
