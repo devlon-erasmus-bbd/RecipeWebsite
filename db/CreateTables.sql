@@ -25,33 +25,21 @@ CREATE TABLE Categories (
     category varchar(50)
 )
 
-CREATE TABLE MeasurementTypes (
-    measurement_type_id int PRIMARY KEY IDENTITY(1, 1),
-    measurement_type varchar(50)
-)
-
 CREATE TABLE Recipes (
     recipe_id int PRIMARY KEY IDENTITY(1, 1),
     recipe_name varchar(50),
+	user_id int,
     category_id int,
-	instructions varchar(500),
-	picture_location varchar(100),
-    FOREIGN KEY (category_id) REFERENCES Categories(category_id)
+	instructions varchar(5000),
+	picture_location varchar(1000),
+    FOREIGN KEY (category_id) REFERENCES Categories(category_id),
+	FOREIGN KEY (user_id) REFERENCES Users(user_id)
 )
 
 CREATE TABLE RecipeIngredients (
     recipe_id int,
     ingredient_id int,
-    amount float,
-    measurement_type_id int,
+    measurement varchar(50),
     FOREIGN KEY (recipe_id) REFERENCES Recipes(recipe_id),
     FOREIGN KEY (ingredient_id) REFERENCES Ingredients(ingredient_id),
-    FOREIGN KEY (measurement_type_id) REFERENCES MeasurementTypes(measurement_type_id)
-)
-
-CREATE TABLE RecipeCategories (
-	recipe_id int,
-	category_id int,
-	FOREIGN KEY (recipe_id) REFERENCES Recipes(recipe_id),
-	FOREIGN KEY (category_id) REFERENCES Categories(category_id)
 )

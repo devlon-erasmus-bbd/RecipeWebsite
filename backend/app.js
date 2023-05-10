@@ -12,6 +12,8 @@ const {
   recipeList,
   recipeIngredients
 } = require('./src/controllers/index');
+const { userRecipes, createRecipe } = require('./src/controllers/recipes');
+const { searchMealDb } = require('./src/controllers/theMealDb');
 
 require('dotenv').config();
 
@@ -27,8 +29,12 @@ app.get('/', function (req, res) {
 app.post('/login', login);
 app.post('/signup', signup);
 app.get('/user', getUserId);
+
+app.get('/recipes/user', userRecipes);
 app.get('/recipes/list', recipeList);
 app.get('/recipes/ingredients', recipeIngredients);
+app.post('/recipes', createRecipe);
+app.get('/recipes/search', searchMealDb);
 
 app.listen(PORT);
 console.log('Running at Port 8080');
