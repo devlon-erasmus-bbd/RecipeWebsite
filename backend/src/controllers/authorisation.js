@@ -2,10 +2,14 @@
 const jwt = require('jsonwebtoken');
 const fs = require('fs');
 
-async function testAuth(req, res, next) {
+async function auth(req, res, next) {
 
   // Get the token from the Authorization header
   const authHeader = req.headers.authorization;
+
+  if (req.path === '/signup' || req.path === '/login') {
+    return next();
+  }
 
   if (!authHeader) {
     return res.status(401).json({ message: 'Authorization header not found' });
@@ -16,17 +20,16 @@ async function testAuth(req, res, next) {
   try {
 
     const privateKey = fs.readFileSync('private.pem');
-    const decodedToken = jwt.verify(token, privateKey);
 
-    console.log(decodedToken);
+    jwt.verify(token, privateKey);
 
   } catch (error) {
     next(error);
   }
 
-  res.send('done');
+  return next();
 }
 
 module.exports = {
-  testAuth
+  auth
 };

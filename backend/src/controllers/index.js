@@ -4,7 +4,7 @@ const { login } = require('./login');
 const { signup } = require('./signup');
 const { getUserId } = require('./getUser');
 const { recipeList, recipeIngredients } = require('./recipes');
-const { testAuth } = require('./authorisation');
+const { auth } = require('./authorisation');
 
 module.exports = {
   login,
@@ -12,5 +12,5 @@ module.exports = {
   getUserId,
   recipeList,
   recipeIngredients,
-  testAuth
+  auth
 };
