@@ -10,9 +10,10 @@ const {
   signup,
   getUserId,
   recipeList,
-  recipeIngredients,
-  auth
+  recipeIngredients
 } = require('./src/controllers/index');
+
+const { auth } = require('./src/middleware/index');
 
 require('dotenv').config();
 
