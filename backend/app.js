@@ -10,7 +10,8 @@ const {
   signup,
   getUserId,
   recipeList,
-  recipeIngredients
+  recipeIngredients,
+  testAuth
 } = require('./src/controllers/index');
 
 require('dotenv').config();
@@ -26,9 +27,10 @@ app.get('/', function (req, res) {
 
 app.post('/login', login);
 app.post('/signup', signup);
+app.get('/testAuth', testAuth);
 app.get('/user', getUserId);
 app.get('/recipes/list', recipeList);
 app.get('/recipes/ingredients', recipeIngredients);
 
 app.listen(PORT);
-console.log('Running at Port 8080');
+console.log(`Running at Port ${PORT}`);
