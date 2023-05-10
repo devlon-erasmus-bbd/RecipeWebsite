@@ -3,8 +3,11 @@
 const express = require('express');
 const path = require('path');
 const app = express();
+const bodyParser = require('body-parser');
+
 const {
   login,
+  signup,
   getUserId,
   recipeList,
   recipeIngredients
@@ -15,13 +18,14 @@ require('dotenv').config();
 const PORT = process.env.PORT || 8080;
 
 app.use(express.static('public'));
+app.use(bodyParser.json());
 
 app.get('/', function (req, res) {
   res.sendFile(path.resolve(__dirname, 'views', 'index.html'));
 });
 
-app.get('/login', login);
-// app.get('/signup', signup);
+app.post('/login', login);
+app.post('/signup', signup);
 app.get('/user', getUserId);
 app.get('/recipes/list', recipeList);
 app.get('/recipes/ingredients', recipeIngredients);
