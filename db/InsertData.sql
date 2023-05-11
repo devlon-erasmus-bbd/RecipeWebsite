@@ -1,8 +1,9 @@
 USE RecipeDB
 GO
 
-INSERT INTO Users (username)
-VALUES ('bob'), ('TheMealDB')
+INSERT INTO Users (username,firstname,lastname,email,hashedpassword)
+VALUES ('bob','robert','cold','cold@gmail.com','$2a$12$P/X7QhAFm0UqwgVrAiFjb.TJXYRzikgssDIgTVpaoyz7YiVBvnqD6'), 
+('TheMealDB','tom','jerry','jerry@gmail.com','$2a$12$P/X7QhAFm0UqwgVrAiFjb.TJXYRzikgssDIgTVpaoyz7YiVBvnqD6')
 
 INSERT INTO Ingredients (ingredient_name)
 VALUES ('egg'), ('butter')
@@ -15,4 +16,3 @@ VALUES ('Fried Egg', 1, 1, 'Heat pan, put butter in pan, let it melt, crack egg 
 
 INSERT INTO RecipeIngredients (recipe_id, ingredient_id, measurement)
 VALUES (1, 1, '1'), (1, 2, '20g')
-

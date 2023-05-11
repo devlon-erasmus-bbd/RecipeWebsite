@@ -2,10 +2,10 @@
 
 const { login } = require('./login');
 const { signup } = require('./signup');
-const { getUser } = require('./getUser');
-const { recipeList, recipeIngredients, createRecipe, userRecipes } = require('./recipes');
-const { searchMealDb } = require('./theMealDb')
-const { categoryList } = require('./category')
+const { getUser, userDeatils } = require('./getUser');
+const { searchMealDb } = require('./theMealDb');
+const { categoryList } = require('./category');
+const { recipeList, recipeIngredients, createRecipe, userRecipes, recipeByCategory } = require('./recipes');
 
 module.exports = {
   login,
@@ -16,5 +16,7 @@ module.exports = {
   createRecipe,
   userRecipes,
   searchMealDb,
-  categoryList
+  categoryList,
+  userDeatils,
+  recipeByCategory
 };
