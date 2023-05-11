@@ -1,18 +1,14 @@
-body {
-    display: grid;
-}
-
 .login-icon {
     width: 7%;
     height: 7%;
 }
 
-article {
+/* article {
     border-style: solid;
-}
+} */
 
 .banner {
-    background-color: bisque;
+    background-color: antiquewhite;
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     align-items: center;
@@ -20,7 +16,21 @@ article {
 }
 
 .content {
-    background-color: aqua;
+    /* background-color: aqua; */
     display: grid;
+    grid-template-columns: 1fr;
+    padding-top: 10%;
+    align-items: center;
     justify-content: center;
+    text-align: center;
+}
+
+.search {
+    width:  60%;
+    font-size: x-large;
+    padding: 0.5%;
+    box-sizing: border-box;
+    justify-self: center;
+    align-self: center;
+    text-align: center;
 }
