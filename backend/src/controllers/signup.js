@@ -1,10 +1,10 @@
 'use strict';
 
-// const bcrypt = require('bcryptjs');
+const bcrypt = require('bcryptjs');
 
 async function signup(req, res, next) {
 
-  // const { email, password } = req.body;
+  const { email, password } = req.body;
 
   try {
     // // Check if the user already exists
@@ -14,18 +14,21 @@ async function signup(req, res, next) {
     //   return res.status(409).json({ message: 'User already exists' });
     // }
 
-    // // Encrypt the password
-    // const hashedPassword = await bcrypt.hash(password, 12);
+    // Encrypt the password
+    const hashedPassword = await bcrypt.hash(password, 12);
 
-    // // Create the new user
-    // const newUser = new User({
-    //   email,
-    //   password: hashedPassword
-    // });
+    // Create the new user
+    const newUser = {
+      email,
+      password: hashedPassword
+    };
 
-    // await newUser.save();
+    // save to databasec
+    console.log(newUser);
 
-    // res.status(201).json({ message: 'User created' });
+    // send response
+    res.status(201).json({ message: 'User created' });
+
   } catch (error) {
     next(error);
   }
