@@ -11,9 +11,9 @@ const {
   getUser,
   recipeList,
   recipeIngredients,
-  userRecipes, 
-  createRecipe, 
-  searchMealDb, 
+  userRecipes,
+  createRecipe,
+  searchMealDb,
   categoryList
 } = require('./src/controllers/index');
 
