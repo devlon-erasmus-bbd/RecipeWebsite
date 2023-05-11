@@ -26,8 +26,8 @@ require('dotenv').config();
 const PORT = process.env.PORT || 8080;
 
 app.use(express.static('public'));
-app.use(bodyParser.json());
-app.use(auth);
+// app.use(bodyParser.json());
+// app.use(auth);
 
 app.get('/', function (req, res) {
   res.sendFile(path.resolve(__dirname, 'views', 'index.html'));
