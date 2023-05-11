@@ -12,7 +12,11 @@ GO
 
 CREATE TABLE Users (
     user_id int PRIMARY KEY IDENTITY(1, 1),
-    username varchar(50)
+    username varchar(50),
+	firstname varchar(50),
+	lastname varchar(50),
+	email varchar(50),
+	hashedpassword text
 )
 
 CREATE TABLE Ingredients (
