@@ -11,12 +11,14 @@ const {
   getUser,
   recipeList,
   recipeIngredients,
-  userRecipes, 
-  createRecipe, 
-  searchMealDb, 
+  userRecipes,
+  createRecipe,
+  searchMealDb,
   categoryList,
   recipeByCategory
 } = require('./src/controllers/index');
+
+const { auth } = require('./src/middleware/index');
 
 require('dotenv').config();
 
@@ -24,6 +26,7 @@ const PORT = process.env.PORT || 8080;
 
 app.use(express.static('public'));
 app.use(bodyParser.json());
+app.use(auth);
 
 app.get('/', function (req, res) {
   res.sendFile(path.resolve(__dirname, 'views', 'index.html'));
@@ -43,4 +46,4 @@ app.post('/recipes', createRecipe);
 app.get('/categories/list', categoryList);
 
 app.listen(PORT);
-console.log('Running at Port 8080');
+console.log(`Running at Port ${PORT}`);
