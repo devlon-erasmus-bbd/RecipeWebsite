@@ -9,6 +9,7 @@ const {
   login,
   signup,
   getUser,
+  userDeatils,
   recipeList,
   recipeIngredients,
   userRecipes,
@@ -34,6 +35,7 @@ app.get('/', function (req, res) {
 app.post('/login', login);
 app.post('/signup', signup);
 app.get('/user', getUser);
+app.get('/user-details/:email', userDeatils);
 
 app.get('/recipes/user', userRecipes);
 app.get('/recipes/list', recipeList);

@@ -1,6 +1,6 @@
 'use strict';
 
-const { postUser, getUserId } = require('./userService');
+const { postUser, getUserId, getUserDetails } = require('./userService');
 const { postCategory, getCategory, getCategoryList } = require('./categoryService');
 const { getRecipeList, getUserRecipes, postRecipe, getRecipeId, postRecipeIngredients, getRecipeIngredients } = require('./recipeService');
 
@@ -15,5 +15,6 @@ module.exports = {
   postRecipe,
   getRecipeId,
   postRecipeIngredients,
-  getRecipeIngredients
+  getRecipeIngredients,
+  getUserDetails
 };

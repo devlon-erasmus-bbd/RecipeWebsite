@@ -7,6 +7,7 @@ require('dotenv').config();
 const config = {
   server: 'localhost',
   database: 'RecipeDB',
+  port: process.env.DATABASE_PORT,
   authentication: {
     type: 'default',
     options: {

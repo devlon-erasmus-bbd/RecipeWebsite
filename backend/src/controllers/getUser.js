@@ -1,5 +1,5 @@
 'use strict';
-const { getUserId } = require('../service/index');
+const { getUserId, getUserDetails } = require('../service/index');
 
 async function getUser(req, res) {
 
@@ -9,6 +9,26 @@ async function getUser(req, res) {
   res.end();
 }
 
+async function userDeatils(req, res) {
+
+  const data = await getUserDetails(req.params.email);
+
+  if (data) {
+    return res.send({
+      user_id: data.user_id,
+      username: data.username,
+      firstname: data.firstname,
+      lastname: data.lastname,
+      email: data.email
+    });
+  }
+
+  return res.send({
+    message: 'user does not exist'
+  });
+}
+
 module.exports = {
-  getUser
+  getUser,
+  userDeatils
 };
