@@ -83,11 +83,33 @@ async function getIngredientId(ingredient) {
     return data.recordsets;
 }
 
+async function getRecipesByCategory(category) {
+    const pool = await connection.getPool();
+    const data = await pool.request().query(`SELECT recipe_name, username, category, instructions, picture_location 
+            FROM Recipes rec
+            JOIN Categories c ON rec.category_id = c.category_id
+            JOIN Users u ON rec.user_id = u.user_id
+            WHERE category = '${category}'`);
+    return data.recordsets;
+}
+
+async function checkRecipeExistsByUser(recipeName, username) {
+    const pool = await connection.getPool();
+    const data = await pool.request().query(`SELECT 1
+        FROM Recipes rec
+        JOIN Users u ON rec.user_id = u.user_id
+        WHERE username = '${username}' AND recipe_name = '${recipeName}'`);
+
+    return (data.rowsAffected[0] !== 0);
+}
+
 module.exports = {
     getRecipeList,
     getUserRecipes,
     postRecipe,
     getRecipeId,
     postRecipeIngredients,
-    getRecipeIngredients
+    getRecipeIngredients,
+    getRecipesByCategory,
+    checkRecipeExistsByUser
 };

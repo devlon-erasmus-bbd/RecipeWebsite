@@ -3,7 +3,7 @@
 const { login } = require('./login');
 const { signup } = require('./signup');
 const { getUser } = require('./getUser');
-const { recipeList, recipeIngredients, createRecipe, userRecipes } = require('./recipes');
+const { recipeList, recipeIngredients, createRecipe, userRecipes, recipeByCategory } = require('./recipes');
 const { searchMealDb } = require('./theMealDb')
 const { categoryList } = require('./category')
 
@@ -16,5 +16,6 @@ module.exports = {
   createRecipe,
   userRecipes,
   searchMealDb,
-  categoryList
+  categoryList,
+  recipeByCategory
 };
