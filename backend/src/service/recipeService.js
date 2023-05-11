@@ -28,8 +28,8 @@ async function getUserRecipes(username) {
 async function postRecipe(recipeData) {
   await postCategory(recipeData[0].category);
 
-  category_id = await getCategory(recipeData[0].category);
-  user_id = await getUserId(recipeData[0].username);
+  let category_id = await getCategory(recipeData[0].category);
+  let user_id = await getUserId(recipeData[0].username);
 
   category_id = category_id[0][0].category_id;
   user_id = user_id[0][0].user_id;
@@ -51,14 +51,14 @@ async function getRecipeId(recipeName) {
 }
 
 async function postRecipeIngredients(recipeData) {
-  recipeId = await getRecipeId(recipeData[0].recipeName);
+  let recipeId = await getRecipeId(recipeData[0].recipeName);
   recipeId = recipeId[0][0].recipe_id;
 
   const pool = await connection.getPool();
 
   recipeData[0].ingredients.forEach(async (ingredient) => {
     await postIngredient(ingredient.name);
-    ingredientId = await getIngredientId(ingredient.name);
+    let ingredientId = await getIngredientId(ingredient.name);
     ingredientId = ingredientId[0][0].ingredient_id;
 
     await pool.request().query(`INSERT INTO RecipeIngredients (recipe_id, ingredient_id, measurement) 
