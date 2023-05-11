@@ -15,7 +15,8 @@ const {
   userRecipes,
   createRecipe,
   searchMealDb,
-  categoryList
+  categoryList,
+  recipeByCategory
 } = require('./src/controllers/index');
 
 const { auth } = require('./src/middleware/index');
@@ -40,8 +41,9 @@ app.get('/user-details/:email', userDeatils);
 app.get('/recipes/user', userRecipes);
 app.get('/recipes/list', recipeList);
 app.get('/recipes/ingredients', recipeIngredients);
-app.post('/recipes', createRecipe);
 app.get('/recipes/search', searchMealDb);
+app.get('/recipes/category', recipeByCategory);
+app.post('/recipes', createRecipe);
 
 app.get('/categories/list', categoryList);
 

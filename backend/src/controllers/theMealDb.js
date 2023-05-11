@@ -1,7 +1,10 @@
 'use strict';
 
 const { postRecipe } = require('../service/index');
-const searchUrl = 'https://www.themealdb.com/api/json/v1/1/search.php?s=';
+
+require('dotenv').config();
+
+const searchUrl = process.env.THEMEALDB_BASEURL + "/search.php?s=";
 
 async function searchMealDb(req, res) {
   const result = [];
