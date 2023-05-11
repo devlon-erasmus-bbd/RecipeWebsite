@@ -16,7 +16,7 @@ CREATE TABLE Users (
 	firstname varchar(50),
 	lastname varchar(50),
 	email varchar(50),
-	hashedpassword varchar(255)
+	hashedpassword text
 )
 
 CREATE TABLE Ingredients (
