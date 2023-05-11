@@ -2,7 +2,7 @@
 
 const { postUser, getUserId } = require('./userService')
 const { postCategory, getCategory, getCategoryList } = require('./categoryService')
-const { getRecipeList, getUserRecipes, postRecipe, getRecipeId, postRecipeIngredients, getRecipeIngredients, getRecipesByCategory, checkRecipeExistsByUser } = require('./recipeService')
+const { getRecipeList, getUserRecipes, postRecipe, getRecipeId, postRecipeIngredients, getRecipeIngredients, getRecipesByCategory, checkRecipeExists } = require('./recipeService')
 
 module.exports = {
     postUser,
@@ -17,5 +17,5 @@ module.exports = {
     postRecipeIngredients,
     getRecipeIngredients,
     getRecipesByCategory,
-    checkRecipeExistsByUser
+    checkRecipeExists
 }

@@ -93,12 +93,12 @@ async function getRecipesByCategory(category) {
     return data.recordsets;
 }
 
-async function checkRecipeExistsByUser(recipeName, username) {
+async function checkRecipeExists(recipeName) {
     const pool = await connection.getPool();
     const data = await pool.request().query(`SELECT 1
         FROM Recipes rec
         JOIN Users u ON rec.user_id = u.user_id
-        WHERE username = '${username}' AND recipe_name = '${recipeName}'`);
+        WHERE recipe_name = '${recipeName}'`);
 
     return (data.rowsAffected[0] !== 0);
 }
@@ -111,5 +111,5 @@ module.exports = {
     postRecipeIngredients,
     getRecipeIngredients,
     getRecipesByCategory,
-    checkRecipeExistsByUser
+    checkRecipeExists
 };

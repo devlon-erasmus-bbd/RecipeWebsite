@@ -1,5 +1,5 @@
 'use strict';
-const { getRecipeList, getUserRecipes, getRecipeIngredients, postRecipe, getRecipesByCategory, checkRecipeExistsByUser } = require('../service/index');
+const { getRecipeList, getUserRecipes, getRecipeIngredients, postRecipe, getRecipesByCategory, checkRecipeExists } = require('../service/index');
 
 async function recipeList(req, res) {
     try {
@@ -37,10 +37,15 @@ async function recipeIngredients(req, res) {
 async function createRecipe(req, res) {
 
     try {
-        checkRecipeExistsByUser(req.body[0].recipeName, req.body[0].username);
+        if (await checkRecipeExists(req.body[0].recipeName)) {
+            res.status(409);
+            res.end();
+            return;
+        }
     } catch(err) {
         res.status(500);
         res.end();
+        return;
     }
 
     try {
