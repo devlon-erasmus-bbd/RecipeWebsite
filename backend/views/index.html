@@ -6,14 +6,17 @@
     <title>Recipe Website</title>
 </head>
 <body>
-    <article>
-        <header class="banner" role="banner">
-            <a href="/login">Login</a>
-            <h1>Recipe Website</h1>
-        </header>
+    <article class="banner">
+        <p><a href="/login"><img src="https://cdn-icons-png.flaticon.com/512/6681/6681204.png" alt="" class="login-icon">Login</a></p>
+        <h1 style="text-align: center;">Recipe Website</h1>
+        <p style="text-align: right;">lol</p>
     </article>
 
-    <p><a href="/login">Login</a></p>
-    <p><a href="/recipes">List recipes</a></p>
+    <article class="content">
+        <form action="/recipes/search">
+            <input class="search" type="text" name="recipes" id="recipes" placeholder="Search for recipes">
+        </form>
+    </article>
+
 </body>
 </html>
