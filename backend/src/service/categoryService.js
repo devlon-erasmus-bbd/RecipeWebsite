@@ -20,6 +20,7 @@ async function getCategory(category) {
 
 async function getCategoryList() {
   const pool = await connection.getPool();
+  console.log('Connected to database');
   const data = await pool.request().query('SELECT category FROM Categories');
 
   return data.recordsets;

@@ -1,3 +1,5 @@
+/* global process */
+
 'use strict';
 
 const sql = require('mssql');
@@ -5,7 +7,7 @@ const sql = require('mssql');
 require('dotenv').config();
 
 const config = {
-  server: 'localhost',
+  server: 'localhost\\LOCAL',
   database: 'RecipeDB',
   port: process.env.DATABASE_PORT,
   authentication: {
@@ -23,7 +25,7 @@ const config = {
 };
 
 async function getPool() {
-  return await sql.connect(config);
+  return sql.connect(config);
 }
 
 module.exports = {
