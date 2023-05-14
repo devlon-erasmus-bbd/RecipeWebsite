@@ -18,8 +18,29 @@
         </form>
     </article>
 
-    <article>
-        <a href="/categories/list">List</a>
+    <article class="centered" id="categories">
+        <p style="font-size: larger;">Food Categories:</p>
+        <script>
+            function catergoryList() {
+                fetch('/categories/list')
+                .then(response => response.json())
+                .then(data => {
+                const list = document.createElement('p');
+                data.forEach(category => {
+                    const link = document.createElement('a');
+                    link.href = `/categories/${category.category}`;
+                    const item = document.createElement('section');
+                    item.textContent = category.category;
+                    link.appendChild(item);
+                    list.appendChild(link);
+                });
+                    document.getElementById('categories').appendChild(list);
+                })
+                .catch(err => console.error(err));
+            }
+
+            document.addEventListener('DOMContentLoaded', catergoryList);
+        </script>
     </article>
 
 </body>
