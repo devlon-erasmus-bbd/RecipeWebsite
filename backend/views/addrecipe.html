@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Add Recipe</title>
+        <link rel="stylesheet" type="text/css" href="../public/addrecipestyle.css">
+      </head>
+  <body>
+    <h1>Add Recipe</h1>
+    <form action="/add/recipe/endpoint" method="post">
+      <label for="recipe-name">Recipe Name:</label>
+      <input type="text" id="recipe-name" name="recipe-name" required>
+
+      <label for="ingredients">Ingredients:</label>
+      <textarea id="ingredients" name="ingredients" required></textarea>
+
+      <label for="instructions">Instructions:</label>
+      <textarea id="instructions" name="instructions" required></textarea>
+
+      <input type="submit" value="Add Recipe">
+    </form>
+  </body>
+</html>
