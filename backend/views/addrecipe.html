@@ -2,8 +2,10 @@
 <html>
     <head>
         <title>Add Recipe</title>
-        <link rel="stylesheet" type="text/css" href="../public/addrecipestyle.css">
-      </head>
+        <link rel="stylesheet" type="text/css" href="../public/style.css">
+    </head>
+    <picture class="slideshow-container"></picture>
+    <script src="../public/slideshow.js"></script>
   <body>
     <h1>Add Recipe</h1>
     <form action="/add/recipe/endpoint" method="post">
@@ -17,6 +19,7 @@
       <textarea id="instructions" name="instructions" required></textarea>
 
       <input type="submit" value="Add Recipe">
+      
     </form>
   </body>
 </html>
