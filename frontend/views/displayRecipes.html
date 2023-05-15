@@ -14,8 +14,8 @@
         <p style="text-align: right;">lol</p>
     </article>
 
-    <article class="centered" id="categories">
-        <p style="font-size: larger;">Food Categories:</p>
+    <article class="centered" id="recipes">
+        <p style="font-size: larger;">Recipes:</p>
         <script>
             
             function recipeList(req) {
@@ -37,7 +37,7 @@
                         list.appendChild(item);
                     });
                     }
-                    document.getElementById('categories').appendChild(list);
+                    document.getElementById('recipes').appendChild(list);
                 })
                 .catch(err => console.error(err));
             }
