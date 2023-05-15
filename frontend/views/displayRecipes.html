@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="../style.css">
+    <title>Recipe Website</title>
+</head>
+<picture class="slideshow-container"></picture>
+<script src="../slideshow.js"></script>
+<body>
+    <article class="banner">
+        <p><a href="/login"><img src="https://cdn-icons-png.flaticon.com/512/6681/6681204.png" alt="" class="login-icon">Login</a></p>
+        <h1 style="text-align: center;"><a href="/" style="color: black; text-decoration: none;">Recipe Website</a></h1>
+        <p style="text-align: right;">lol</p>
+    </article>
+
+    <article class="centered" id="recipes">
+        <p style="font-size: larger;">Recipes:</p>
+        <script>
+            
+            function recipeList(req) {
+                const url = new URL(window.location.href);
+                const params = url.search;
+                console.log(params);
+                fetch(`/recipes/category${params}`)
+                .then(response => response.json())
+                .then(data => {
+                const list = document.createElement('p');
+                        if (data.length == 0) {
+                        const item = document.createElement('section');
+                        item.textContent = `No recipes available!`;
+                        list.appendChild(item);
+                    } else {
+                        data.forEach(recipe => {
+                        const item = document.createElement('section');
+                        item.textContent = `${recipe.recipe_name}: ${recipe.instructions}`;
+                        list.appendChild(item);
+                    });
+                    }
+                    document.getElementById('recipes').appendChild(list);
+                })
+                .catch(err => console.error(err));
+            }
+
+            document.addEventListener('DOMContentLoaded', recipeList);
+        </script>
+    </article>
+</body>
+</html>
