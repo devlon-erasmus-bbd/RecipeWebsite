@@ -13,19 +13,19 @@ async function login(req, res, next) {
     const user = await getUserDetails(email);
 
     if (!user) {
-      return res.status(401).json({ message: 'Invalid email or password' });
+      return res.status(401).json({ message: 'Invalid email' });
     }
 
     // Compare the password
     const isValidPassword = await bcrypt.compare(password, user.hashedpassword);
 
     if (!isValidPassword) {
-      return res.status(401).json({ message: 'Invalid email or password' });
+      return res.status(401).json({ message: 'Invalid password' });
     }
 
 
     // private key
-    const privateKey = fs.readFileSync('private.pem');
+    const privateKey = fs.readFileSync('../private.pem');
 
 
     // Create a JWT token

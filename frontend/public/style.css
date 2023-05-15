@@ -41,6 +41,29 @@ body {
     text-align: center;
 }
 
+.user {
+    font-size: inherit;
+    padding: inherit;
+    box-sizing: inherit;
+    justify-self: inherit;
+    align-self: inherit;
+    text-align: inherit;
+    width: 100%;
+}
+
+.login {
+    display: grid;
+    grid-template: repeat(2fr, 2);
+    width:  40%;
+    font-size: x-large;
+    padding: 0.5%;
+    row-gap: 7%;
+    box-sizing: border-box;
+    justify-self: center;
+    align-self: center;
+    text-align: center;
+}
+
 .centered {
     display: grid;
     grid-template-columns: 1fr;
