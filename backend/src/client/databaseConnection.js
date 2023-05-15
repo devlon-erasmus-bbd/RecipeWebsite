@@ -4,7 +4,7 @@
 
 const sql = require('mssql');
 
-require('dotenv').config();
+require('dotenv').config({path:'../backend/.env'});
 
 const config = {
   server: 'localhost\\LOCAL',

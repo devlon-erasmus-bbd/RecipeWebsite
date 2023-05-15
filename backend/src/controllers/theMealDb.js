@@ -2,7 +2,7 @@
 
 const { postRecipe } = require('../service/index');
 
-require('dotenv').config();
+require('dotenv').config({path:'../backend/.env'});
 
 const searchUrl = process.env.THEMEALDB_BASEURL + "/search.php?s=";
 

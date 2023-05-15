@@ -19,15 +19,15 @@ const {
   searchMealDb,
   categoryList,
   recipeByCategory
-} = require('./src/controllers/index');
+} = require('../backend/src/controllers/index');
 
-const { auth } = require('./src/middleware/index');
+const { auth } = require('../backend/src/middleware/index');
 
-require('dotenv').config();
+require('dotenv').config({path:'../backend/.env'});
 
 const PORT = process.env.PORT || 8080;
 
-app.use(express.static('public'));
+app.use(express.static('./public'));
 app.use(bodyParser.json());
 // app.use(auth);
 

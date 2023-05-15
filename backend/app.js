@@ -23,7 +23,7 @@ const {
 
 const { auth } = require('./src/middleware/index');
 
-require('dotenv').config();
+require('dotenv').config({path:'../backend/.env'});
 
 const PORT = process.env.PORT || 8080;
 
