@@ -29,10 +29,19 @@ const PORT = process.env.PORT || 8080;
 
 app.use(express.static('public'));
 app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
 // app.use(auth);
 
 app.get('/', function (req, res) {
   res.sendFile(path.resolve(__dirname, 'views', 'index.html'));
+});
+
+app.get('/recipes/display', function (req, res) {
+  res.sendFile(path.resolve(__dirname, 'views', 'displayRecipes.html'));
+});
+
+app.get('/login/page', function (req, res) {
+  res.sendFile(path.resolve(__dirname, 'views', 'loginPage.html'));
 });
 
 app.post('/login', login);
@@ -48,10 +57,6 @@ app.get('/recipes/category', recipeByCategory);
 app.post('/recipes', createRecipe);
 
 app.get('/categories/list', categoryList);
-
-app.get('/recipes/display', function (req, res) {
-  res.sendFile(path.resolve(__dirname, 'views', 'displayRecipes.html'));
-});
 
 app.listen(PORT);
 console.log(`Running at Port ${PORT}`);

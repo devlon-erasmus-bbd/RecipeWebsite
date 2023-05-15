@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="../style.css">
+    <title>Recipe Website</title>
+</head>
+<picture class="slideshow-container"></picture>
+<script src="../slideshow.js"></script>
+<body>
+    <article class="banner">
+        <p><a href="/login"><img src="https://cdn-icons-png.flaticon.com/512/6681/6681204.png" alt="" class="login-icon">Login</a></p>
+        <h1 style="text-align: center;"><a href="/" style="color: black; text-decoration: none;">Recipe Website</a></h1>
+        <p style="text-align: right;">lol</p>
+    </article>
+
+    <article class="content">
+        <form onsubmit="login(event)" class="login">
+            <input class="user" type="email" id="email" name="email" required placeholder="Enter Email: example@email.com">
+            <input class="user" type="password" id="password" name="password" required placeholder="Enter Password">
+            <button type="submit" style="font-size: x-large;">Login</button>
+        </form>
+
+        <script>
+            function login(event) {
+                event.preventDefault();
+                const email = document.getElementById('email').value;
+                const password = document.getElementById('password').value;
+
+                // Create the request body
+                const requestBody = {
+                    email: email,
+                    password: password
+                };
+                fetch('/login', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(requestBody)
+                })
+                .then(response => {
+                    if (response.status==200) {
+                        window.location.href = '/';
+                    } else {
+                        console.log('Login failed');
+                        // Display an error message or take appropriate action
+                    }
+                })
+                .catch(error => {
+                    console.error('Error during login:', error);
+                    // Handle error scenario, display an error message, etc.
+                });
+            }
+        </script>
+
+    </article>
+</body>
+</html>

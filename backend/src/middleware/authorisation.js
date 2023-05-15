@@ -7,7 +7,7 @@ async function auth(req, res, next) {
   // Get the token from the Authorization header
   const authHeader = req.headers.authorization;
 
-  if (req.path === '/signup' || req.path === '/login') {
+  if (req.path === '/signup' || req.path === '/login' || req.path === '/') {
     return next();
   }
 
