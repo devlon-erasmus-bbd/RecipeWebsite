@@ -7,7 +7,7 @@ const sql = require('mssql');
 require('dotenv').config({path:'../backend/.env'});
 
 const config = {
-  server: 'localhost',
+  server: process.env.DB_SERVER,
   database: 'RecipeDB',
   port: process.env.DATABASE_PORT,
   authentication: {

@@ -27,7 +27,7 @@ require('dotenv').config({path:'../backend/.env'});
 
 const PORT = process.env.PORT || 8080;
 
-app.use(express.static('./public'));
+app.use(express.static('public'));
 app.use(bodyParser.json());
 // app.use(auth);
 
@@ -48,6 +48,10 @@ app.get('/recipes/category', recipeByCategory);
 app.post('/recipes', createRecipe);
 
 app.get('/categories/list', categoryList);
+
+app.get('/recipes/display', function (req, res) {
+  res.sendFile(path.resolve(__dirname, 'views', 'displayRecipes.html'));
+});
 
 app.listen(PORT);
 console.log(`Running at Port ${PORT}`);
