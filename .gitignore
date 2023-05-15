@@ -141,3 +141,6 @@ Webpack/*
 private.key
 private.pem
 public.key
+
+package.json
+package-lock.json

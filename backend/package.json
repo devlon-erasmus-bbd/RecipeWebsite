@@ -1,23 +1,16 @@
 {
-  "name": "backend",
+  "name": "new-folder",
   "version": "1.0.0",
-  "description": "The backend service for recipe website",
-  "main": "app.js",
+  "description": "",
+  "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node app.js"
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "kgotlelelo",
+  "author": "",
   "license": "ISC",
   "dependencies": {
-    "bcryptjs": "^2.4.3",
-    "body-parser": "^1.20.2",
     "dotenv": "^16.0.3",
     "express": "^4.18.2",
-    "jsonwebtoken": "^9.0.0",
-    "mssql": "^6.2.1"
-  },
-  "devDependencies": {
-    "eslint": "^8.40.0"
+    "mssql": "^9.1.1"
   }
 }

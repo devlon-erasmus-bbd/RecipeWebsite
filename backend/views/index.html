@@ -2,11 +2,11 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" type="text/css" href="../public/style.css">
+    <link rel="stylesheet" type="text/css" href="style.css">
     <title>Recipe Website</title>
 </head>
 <picture class="slideshow-container"></picture>
-<script src="../public/slideshow.js"></script>
+<script src="slideshow.js"></script>
 <body>
     <article class="banner">
         <p><a href="/login"><img src="https://cdn-icons-png.flaticon.com/512/6681/6681204.png" alt="" class="login-icon">Login</a></p>
@@ -15,9 +15,34 @@
     </article>
 
     <article class="content">
-        <form action="/recipes/search">
+        <form action="/recipes/search" style="all: unset;">
             <input class="search" type="text" name="recipes" id="recipes" placeholder="Search for recipes">
         </form>
+    </article>
+
+    <article class="centered" id="categories">
+        <p style="font-size: larger;">Food Categories:</p>
+        <script>
+            function catergoryList() {
+                fetch('/categories/list')
+                .then(response => response.json())
+                .then(data => {
+                const list = document.createElement('p');
+                data.forEach(category => {
+                    const link = document.createElement('a');
+                    link.href = `/categories/${category.category}`;
+                    const item = document.createElement('section');
+                    item.textContent = category.category;
+                    link.appendChild(item);
+                    list.appendChild(link);
+                });
+                    document.getElementById('categories').appendChild(list);
+                })
+                .catch(err => console.error(err));
+            }
+
+            document.addEventListener('DOMContentLoaded', catergoryList);
+        </script>
     </article>
 
 </body>
