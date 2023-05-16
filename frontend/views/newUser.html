@@ -17,20 +17,19 @@
     </article>
 
     <article class="content">
-        <form onsubmit="login(event)" class="login">
+        <form onsubmit="signup(event)" class="login">
+            <input class="user" type="text" id="username" name="username" required placeholder="Enter Username">
+            <input class="user" type="text" id="firstname" name="firstname" required placeholder="Enter Firstname">
+            <input class="user" type="text" id="lastname" name="lastname" required placeholder="Enter Lastname">
             <input class="user" type="email" id="email" name="email" required placeholder="Enter Email: example@email.com">
             <input class="user" type="password" id="password" name="password" required placeholder="Enter Password">
-            <button type="submit" style="font-size: x-large;">Login</button>
+            <button type="submit" style="font-size: x-large;">Create User</button>
         </form>
-        <script src="../login.js"></script>
+        <script src="../signup.js"></script>
     </article>
 
     <article class="errorMsg">
         <section style="font-size: xx-large; color: white;" id="error-message"></section>
-    </article>
-
-    <article class="content" style="padding-top: 5%;">
-        <button class="login" style="font-size: x-large;"><a href="/user/new">Register New User</a></button>
     </article>
 
 </body>

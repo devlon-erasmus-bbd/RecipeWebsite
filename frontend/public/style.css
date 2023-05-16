@@ -43,18 +43,19 @@ body {
 }
 
 .user {
-    font-size: inherit;
-    padding: inherit;
-    box-sizing: inherit;
-    justify-self: inherit;
-    align-self: inherit;
-    text-align: inherit;
-    width: 100%;
+    width:  100% !important;
+    max-width: 100% !important;
+    font-size: x-large;
+    padding: 0.5%;
+    box-sizing: border-box;
+    justify-self: center;
+    align-self: center;
+    text-align: center;
 }
 
 .login {
     display: grid;
-    grid-template: repeat(2fr, 2);
+    grid-template: 1fr;
     width:  40%;
     font-size: x-large;
     padding: 0.5%;
@@ -73,6 +74,16 @@ body {
     justify-content: center;
     align-items: center;
     background-color: rgba(255, 255, 255, 0.8); /* opaque white */
+}
+
+.errorMsg {
+    display: grid;
+    grid-template-columns: 1fr;
+    margin-top: 5%; /* adjust the value as needed */
+    place-items: center;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(253, 0, 0, 0.8); /* opaque white */
 }
 
 form {

@@ -1,6 +1,6 @@
 function displayUsername() {
-    const usernameElement = document.getElementById('username');
-    let username = sessionStorage.getItem('username'); // Retrieve username from sessionStorage
+    const usernameElement = document.getElementById('usernameDisplay');
+    let username = sessionStorage.getItem('usernameDisplay'); // Retrieve username from sessionStorage
 
     if (username) {
         usernameElement.textContent = username;
@@ -16,7 +16,7 @@ function displayUsername() {
                     usernameElement.innerHTML  = '<a href="/login/page">Please Login!</a>';
                 } else {
                     usernameElement.textContent = data.username;
-                    sessionStorage.setItem('username', data.username); // Store username in sessionStorage
+                    sessionStorage.setItem('usernameDisplay', data.username); // Store username in sessionStorage
                 }
             })
             .catch(err => console.error(err));

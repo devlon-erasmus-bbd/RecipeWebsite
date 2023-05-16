@@ -20,8 +20,10 @@ function login(event) {
             const email = requestBody.email; // Assuming the server sends the username in the response
             window.location.href = `/?email=${email}`;
         } else {
-            console.log('Login failed');
-            // Display an error message or take appropriate action
+            response.json().then(data => {
+                const errorElement = document.getElementById('error-message');
+                errorElement.textContent = `Login Failed: ${data.message}!`;
+            });
         }
     })
     .catch(error => {
