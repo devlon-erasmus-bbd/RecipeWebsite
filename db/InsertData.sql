@@ -3,7 +3,8 @@ GO
 
 INSERT INTO Users (username,firstname,lastname,email,hashedpassword)
 VALUES ('bob','robert','cold','cold@gmail.com','$2a$12$P/X7QhAFm0UqwgVrAiFjb.TJXYRzikgssDIgTVpaoyz7YiVBvnqD6'), 
-('TheMealDB','tom','jerry','jerry@gmail.com','$2a$12$P/X7QhAFm0UqwgVrAiFjb.TJXYRzikgssDIgTVpaoyz7YiVBvnqD6')
+('TheMealDB','tom','jerry','jerry@gmail.com','$2a$12$P/X7QhAFm0UqwgVrAiFjb.TJXYRzikgssDIgTVpaoyz7YiVBvnqD6'),
+('hello','hello','world','hello@gmail.com','$2a$12$YsodM4jKZMe6TDNVuhuth.PcN.K3mAYNRQ5Yby8AcJGwjwDvdekfm')
 
 INSERT INTO Ingredients (ingredient_name)
 VALUES ('egg'), ('butter')

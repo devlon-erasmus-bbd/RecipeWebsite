@@ -41,7 +41,8 @@
                 })
                 .then(response => {
                     if (response.status==200) {
-                        window.location.href = '/';
+                        const email = requestBody.email; // Assuming the server sends the username in the response
+                        window.location.href = `/?email=${email}`;
                     } else {
                         console.log('Login failed');
                         // Display an error message or take appropriate action

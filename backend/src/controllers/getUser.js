@@ -12,6 +12,7 @@ async function getUser(req, res) {
 async function userDeatils(req, res) {
 
   const data = await getUserDetails(req.params.email);
+  console.log(req.params.email);
 
   if (data) {
     return res.send({
