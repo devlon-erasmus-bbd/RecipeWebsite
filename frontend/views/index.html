@@ -11,28 +11,9 @@
     <article class="banner">
         <p><a href="/login/page"><img src="https://cdn-icons-png.flaticon.com/512/6681/6681204.png" alt="" class="login-icon">Login</a></p>
         <h1 style="text-align: center;"><a href="/" style="color: black; text-decoration: none;">Recipe Website</a></h1>
-        <p style="text-align: right;">User: <span id="username"></span></p>
+        <p style="text-align: right; padding-right: 1%;">User: <span id="username"></span></p>
 
-        <script>
-            function updateUsername() {
-                const usernameElement = document.getElementById('username');
-                const url = new URL(window.location.href);
-                const searchParams = new URLSearchParams(url.search);
-                const params = searchParams.get("email");
-                fetch(`user-details/${params}`)
-                    .then(response => response.json())
-                    .then(data => {
-                        if (data.message) {
-                            usernameElement.innerHTML  = '<a href="/login/page">Login</a>';
-                        } else {
-                            usernameElement.textContent = data.username;
-                        }
-                    })
-                    .catch(err => console.error(err));
-            }
-
-            document.addEventListener('DOMContentLoaded', updateUsername);
-        </script>
+        <script src="../displayUsername.js"></script>
     </article>
 
     <article class="content">
@@ -43,28 +24,7 @@
 
     <article class="centered" id="categories">
         <p style="font-size: larger;">Food Categories:</p>
-        <script>
-            function catergoryList() {
-                fetch('/categories/list')
-                .then(response => response.json())
-                .then(data => {
-                const list = document.createElement('p');
-                data.forEach(category => {
-                    const link = document.createElement('a');
-                    // link.href = `/recipes/category?category=${category.category}`;
-                    link.href = `/recipes/display?category=${category.category}`;
-                    const item = document.createElement('section');
-                    item.textContent = category.category;
-                    link.appendChild(item);
-                    list.appendChild(link);
-                });
-                    document.getElementById('categories').appendChild(list);
-                })
-                .catch(err => console.error(err));
-            }
-
-            document.addEventListener('DOMContentLoaded', catergoryList);
-        </script>
+        <script src="../catergoryList.js"></script>
     </article>
 
 </body>
