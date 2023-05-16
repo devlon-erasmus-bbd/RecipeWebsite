@@ -44,6 +44,10 @@ app.get('/login/page', function (req, res) {
   res.sendFile(path.resolve(__dirname, 'views', 'loginPage.html'));
 });
 
+app.get('/user/new', function (req, res) {
+  res.sendFile(path.resolve(__dirname, 'views', 'newUser.html'));
+});
+
 app.post('/login', login);
 app.post('/signup', signup);
 app.get('/user', getUser);
