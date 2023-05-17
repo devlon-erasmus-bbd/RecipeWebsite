@@ -1,5 +1,5 @@
 function catergoryList() {
-    fetch('/categories/list')
+    fetch('http://localhost:8080/categories/list')
     .then(response => response.json())
     .then(data => {
     const list = document.createElement('p');
