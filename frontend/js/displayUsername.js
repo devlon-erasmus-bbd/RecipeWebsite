@@ -22,7 +22,7 @@ function displayUsername() {
             .catch(err => console.error(err));
         }
         else {
-            usernameElement.innerHTML  = '<a href="/login/page">Please Login!</a>';
+            usernameElement.innerHTML  = '<a href="loginPage.html">Please Login!</a>';
         }
         
     }

@@ -18,7 +18,7 @@ function login(event) {
     .then(response => {
         if (response.status==200) {
             const email = requestBody.email; // Assuming the server sends the username in the response
-            window.location.href = `/?email=${email}`;
+            window.location.href = `index.html?email=${email}`;
         } else {
             response.json().then(data => {
                 const errorElement = document.getElementById('error-message');

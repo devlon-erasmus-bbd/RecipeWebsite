@@ -6,7 +6,7 @@ function catergoryList() {
     data.forEach(category => {
         const link = document.createElement('a');
         // link.href = `/recipes/category?category=${category.category}`;
-        link.href = `/recipes/display?category=${category.category}`;
+        link.href = `displayRecipes.html?category=${category.category}`;
         const item = document.createElement('section');
         item.textContent = category.category;
         link.appendChild(item);
