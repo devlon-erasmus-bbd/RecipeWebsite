@@ -8,7 +8,7 @@ function login(event) {
         email: email,
         password: password
     };
-    fetch('/login', {
+    fetch('http://localhost:8080/login', {
     method: 'POST',
     headers: {
         'Content-Type': 'application/json'
@@ -18,7 +18,7 @@ function login(event) {
     .then(response => {
         if (response.status==200) {
             const email = requestBody.email; // Assuming the server sends the username in the response
-            window.location.href = `/?email=${email}`;
+            window.location.href = `index.html?email=${email}`;
         } else {
             response.json().then(data => {
                 const errorElement = document.getElementById('error-message');
