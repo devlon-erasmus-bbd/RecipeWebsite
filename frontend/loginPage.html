@@ -2,34 +2,35 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" type="text/css" href="../css/style.css">
+    <link rel="stylesheet" type="text/css" href="./css/style.css">
     <title>Recipe Website</title>
 </head>
 <picture class="slideshow-container"></picture>
-<script src="../js/slideshow.js"></script>
+<script src="./js/slideshow.js"></script>
 <body>
     <article class="banner">
         <p><a href="/login/page"><img src="https://cdn-icons-png.flaticon.com/512/6681/6681204.png" alt="" class="login-icon">Login</a></p>
         <h1 style="text-align: center;"><a href="/" style="color: black; text-decoration: none;">Recipe Website</a></h1>
         <p style="text-align: right; padding-right: 1%;">User: <span id="usernameDisplay"></span></p>
 
-        <script src="../js/displayUsername.js"></script>
+        <script src="./js/displayUsername.js"></script>
     </article>
 
     <article class="content">
-        <form onsubmit="signup(event)" class="login">
-            <input class="user" type="text" id="username" name="username" required placeholder="Enter Username">
-            <input class="user" type="text" id="firstname" name="firstname" required placeholder="Enter Firstname">
-            <input class="user" type="text" id="lastname" name="lastname" required placeholder="Enter Lastname">
+        <form onsubmit="login(event)" class="login">
             <input class="user" type="email" id="email" name="email" required placeholder="Enter Email: example@email.com">
             <input class="user" type="password" id="password" name="password" required placeholder="Enter Password">
-            <button type="submit" style="font-size: x-large;">Create User</button>
+            <button type="submit" style="font-size: x-large;">Login</button>
         </form>
-        <script src="../js/signup.js"></script>
+        <script src="./js/login.js"></script>
     </article>
 
     <article class="errorMsg">
         <section style="font-size: xx-large; color: white;" id="error-message"></section>
+    </article>
+
+    <article class="content" style="padding-top: 5%;">
+        <button class="login" style="font-size: x-large;"><a href="/user/new">Register New User</a></button>
     </article>
 
 </body>
