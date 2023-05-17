@@ -9,7 +9,7 @@ require('dotenv').config({path:'../backend/.env'});
 const config = {
   server: process.env.DB_SERVER,
   database: 'RecipeDB',
-  port: process.env.DATABASE_PORT,
+  port: parseInt(process.env.DATABASE_PORT, 10),
   authentication: {
     type: 'default',
     options: {
