@@ -19,7 +19,7 @@ async function searchMealDb(req, res) {
 
     await fetch(searchUrl + search)
       .then((response) => response.json())
-      .then((data) => {
+      .then(async (data) => {
         const myMeal = data.meals[0];
 
         const meal = {};
@@ -48,26 +48,29 @@ async function searchMealDb(req, res) {
         }
 
         result[0] = meal;
+        await postRecipe(result);
       });
-    await postRecipe(result);
-
-    let i = 0;
-    let currentRecipes = await getRecipeList();
-    currentRecipes = currentRecipes[0];
-  
-    currentRecipes.forEach(recipe => {
-      if (recipe.recipe_name.toLowerCase().includes(search.toLowerCase()) || 
-          recipe.category.toLowerCase().includes(search.toLowerCase())) {
-        result[i++] = recipe;
-      }
-    });
-
-    res.json(result);
   } catch (err) {
     console.log(err);
     res.status(500);
   }
+  res.json(await getRecipesMatchingSearch(search));
   res.end();
+}
+
+async function getRecipesMatchingSearch(search) {
+  let result = [];
+  let i = 0;
+  let currentRecipes = await getRecipeList();
+  currentRecipes = currentRecipes[0];
+  
+  currentRecipes.forEach(recipe => {
+    if (recipe.recipe_name.toLowerCase().includes(search.toLowerCase()) || 
+        recipe.category.toLowerCase().includes(search.toLowerCase())) {
+      result[i++] = recipe;
+    }
+  });
+  return result;
 }
 
 module.exports = {
