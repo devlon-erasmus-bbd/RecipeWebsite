@@ -1,6 +1,6 @@
 'use strict';
 
-const { postRecipe } = require('../service/index');
+const { postRecipe, getRecipeList } = require('../service/index');
 
 require('dotenv').config({path:'../backend/.env'});
 
@@ -9,13 +9,15 @@ const searchUrl = process.env.THEMEALDB_BASEURL + "/search.php?s=";
 async function searchMealDb(req, res) {
   const result = [];
 
+  const search = req.query.search;
+
   try {
-    if (req.query.search.length === 0) {
+    if (search.length === 0) {
       res.status(500);
       res.end();
     }
 
-    await fetch(searchUrl + req.query.search)
+    await fetch(searchUrl + search)
       .then((response) => response.json())
       .then((data) => {
         const myMeal = data.meals[0];
@@ -47,8 +49,20 @@ async function searchMealDb(req, res) {
 
         result[0] = meal;
       });
+    await postRecipe(result);
+
+    let i = 0;
+    let currentRecipes = await getRecipeList();
+    currentRecipes = currentRecipes[0];
+  
+    currentRecipes.forEach(recipe => {
+      if (recipe.recipe_name.toLowerCase().includes(search.toLowerCase()) || 
+          recipe.category.toLowerCase().includes(search.toLowerCase())) {
+        result[i++] = recipe;
+      }
+    });
+
     res.json(result);
-    postRecipe(result);
   } catch (err) {
     console.log(err);
     res.status(500);
