@@ -1,7 +1,7 @@
 function recipeList() {
     const url = new URL(window.location.href);
     const params = url.search;
-    fetch(`/recipes/category${params}`)
+    fetch(`http://localhost:8080/recipes/category${params}`)
     .then(response => response.json())
     .then(data => {
     const list = document.createElement('p');

@@ -15,7 +15,7 @@ function signup() {
         password: password
     };
   
-    fetch('/signup', {
+    fetch('http://localhost:8080/signup', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
@@ -24,7 +24,7 @@ function signup() {
         })
         .then(response => {
             if (response.ok) {
-                window.location.href = '/login/page';
+                window.location.href = 'loginPage.html';
             } else {
             response.json().then(data => {
                 const errorElement = document.getElementById('error-message');
