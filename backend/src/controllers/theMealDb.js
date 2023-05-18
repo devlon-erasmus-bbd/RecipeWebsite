@@ -19,7 +19,7 @@ async function searchMealDb(req, res) {
 
     await fetch(searchUrl + search)
       .then((response) => response.json())
-      .then((data) => {
+      .then(async (data) => {
         const myMeal = data.meals[0];
 
         const meal = {};
@@ -48,13 +48,13 @@ async function searchMealDb(req, res) {
         }
 
         result[0] = meal;
+        await postRecipe(result);
       });
-    await postRecipe(result);
-    res.json(getRecipesMatchingSearch(search));
   } catch (err) {
     console.log(err);
     res.status(500);
   }
+  res.json(await getRecipesMatchingSearch(search));
   res.end();
 }
 
