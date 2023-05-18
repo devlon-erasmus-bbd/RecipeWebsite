@@ -27,16 +27,21 @@ async function getUserRecipes(username) {
 }
 
 async function postRecipe(recipeData) {
+  const recipeName = recipeData[0].recipeName.replace("'", "");
+  const instructions =  recipeData[0].instructions.replace("'", "");
+
+  const exists = await checkRecipeExists(recipeName);
+  if (exists) {
+    return;
+  }
+
   await postCategory(recipeData[0].category);
 
   let category_id = await getCategory(recipeData[0].category);
   let user_id = await getUserId(recipeData[0].username);
 
   category_id = category_id[0][0].category_id;
-  user_id = user_id[0][0].user_id;
-
-  const recipeName = recipeData[0].recipeName.replace("'", "");
-  const instructions =  recipeData[0].instructions.replace("'", ""); 
+  user_id = user_id[0][0].user_id; 
 
   const pool = await connection.getPool();
 
