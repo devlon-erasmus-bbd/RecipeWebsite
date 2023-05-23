@@ -12,7 +12,16 @@ function recipeList() {
         } else {
             data.forEach(recipe => {
             const item = document.createElement('section');
-            item.textContent = `${recipe.recipe_name}: ${recipe.instructions}`;
+            item.setAttribute('id', 'recipe')
+            item.textContent = `${recipe.recipe_name} by ${recipe.username}:`;
+
+            recipe.instructions.split("\n").forEach(instr => {
+                const instruction = document.createElement('section');
+                instruction.setAttribute('id', 'instruction');
+                instruction.textContent = instr;
+                item.appendChild(instruction);
+            });
+
             list.appendChild(item);
         });
         }

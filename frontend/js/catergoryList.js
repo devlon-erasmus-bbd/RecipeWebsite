@@ -8,7 +8,7 @@ function catergoryList() {
         // link.href = `/recipes/category?category=${category.category}`;
         link.href = `displayRecipes.html?category=${category.category}`;
         const item = document.createElement('section');
-        item.textContent = category.category;
+        item.textContent = category.category.toUpperCase();
         link.appendChild(item);
         list.appendChild(link);
     });

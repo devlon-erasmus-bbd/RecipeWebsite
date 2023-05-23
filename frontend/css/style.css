@@ -128,3 +128,40 @@ input[type="submit"] {
     background-repeat: no-repeat;
     z-index: -1;
 }
+
+#recipes {
+    font-size: larger;
+}
+
+#recipe {
+    font-size: larger;
+    font-style: oblique;
+    background-color: #ffffff;
+    min-height: 100%;
+    width: 80%;
+    margin: auto;
+    top: 0;
+    left: 0;
+    z-index: 2;
+    border-radius: 0.6em;
+    margin-bottom: 1rem;
+}
+
+#instruction {
+    font-size: medium;
+}
+
+#categories {
+    font-size: larger;
+    font-style: oblique;
+    background-color: #ffffff;
+    min-height: 100%;
+    width: 20%;
+    top: 0;
+    left: 0;
+    margin: auto;
+    z-index: 2;
+    border-radius: 0.6em;
+    margin-top: 4rem;
+    margin-bottom: 1rem;
+}
