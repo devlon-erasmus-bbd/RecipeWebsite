@@ -12,7 +12,14 @@ function recipeList() {
         } else {
             data.forEach(recipe => {
             const item = document.createElement('section');
-            item.textContent = `${recipe.recipe_name}: ${recipe.instructions}`;
+            item.textContent = `${recipe.recipe_name} by ${recipe.username}:`;
+
+            recipe.instructions.split("\n").forEach(instruction => {
+                const instructions = document.createElement('section');
+                instructions.textContent = instruction;
+                item.appendChild(instructions);
+            });
+
             list.appendChild(item);
         });
         }
