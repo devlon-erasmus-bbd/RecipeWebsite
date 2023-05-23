@@ -138,7 +138,8 @@ input[type="submit"] {
     font-style: oblique;
     background-color: #ffffff;
     min-height: 100%;
-    width: 100%;
+    width: 80%;
+    margin: auto;
     top: 0;
     left: 0;
     z-index: 2;
