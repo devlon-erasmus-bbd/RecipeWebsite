@@ -128,3 +128,16 @@ input[type="submit"] {
     background-repeat: no-repeat;
     z-index: -1;
 }
+
+#recipes {
+    font-size: larger;
+}
+
+#recipe {
+    font-size: larger;
+    font-style: oblique;
+}
+
+#instruction {
+    font-size: medium;
+}
