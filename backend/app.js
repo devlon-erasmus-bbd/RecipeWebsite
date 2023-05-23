@@ -23,7 +23,7 @@ const {
 
 const { auth } = require('./src/middleware/index');
 
-require('dotenv').config({path:'../backend/.env'});
+require('dotenv').config();
 
 const PORT = process.env.PORT || 8080;
 
@@ -36,7 +36,7 @@ app.use(function(req, res, next) {
 
 app.use(express.static('public'));
 app.use(bodyParser.json());
-// app.use(auth);
+app.use(auth);
 
 app.post('/login', login);
 app.post('/signup', signup);
