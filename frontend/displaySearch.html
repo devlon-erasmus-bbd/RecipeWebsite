@@ -7,13 +7,6 @@
 </head>
 <picture class="slideshow-container"></picture>
 <script src="./js/slideshow.js"></script>
-<script type="text/javascript">
-    function handleSearch() {
-        const params = "?search=" + document.test.search.value;
-        window.location.href = `displaySearch.html${params}`;
-        return false;
-    }
-</script>
 <body>
     <article class="banner">
         <p><a href="loginPage.html"><img src="https://cdn-icons-png.flaticon.com/512/6681/6681204.png" alt="" class="login-icon">Login</a></p>
@@ -23,18 +16,10 @@
         <script src="./js/displayUsername.js"></script>
     </article>
 
-    <article class="content">
-        <form onsubmit="return handleSearch()" style="all: unset;" name="test">
-            <input class="search" type="text" name="search" id="search" placeholder="Search for recipes">
-        </form>
+
+    <article class="centered" id="recipes">
+        <p style="font-size: larger;">Results:</p>
+        <script src="./js/search.js"></script>
     </article>
-
-    <section id="recipes"></section>
-
-    <article class="centered" id="categories">
-        <p style="font-size: larger;">Food Categories:</p>
-        <script src="./js/catergoryList.js"></script>
-    </article>
-
 </body>
 </html>
