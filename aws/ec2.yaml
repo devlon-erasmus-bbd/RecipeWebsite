@@ -1,0 +1,39 @@
+AWSTemplateFormatVersion: "2010-09-09"
+
+Parameters:
+  ExportVpcStackName:
+    Description: The name of the vpc stack that exports values
+    Type: String
+
+  EC2ImageId:
+    Default: "ami-06a0cd9728546d178"
+    Description: The imageId of the ec2 instance
+    Type: String
+
+  EC2Type:
+    Default: "t2.micro"
+    Description: The type of the instance
+    Type: String
+
+Resources:
+  EC2Instance:
+    Type: AWS::EC2::Instance
+    Properties:
+      ImageId: !Ref EC2ImageId
+      InstanceType: !Ref EC2Type
+      KeyName: WhizKey
+      SecurityGroupIds:
+        - Fn::ImportValue: !Sub ${ExportVpcStackName}-SSHSecurityGroup
+      SubnetId: 
+        Fn::ImportValue: !Sub ${ExportVpcStackName}-PrivateSubnet
+  
+  EC2InstancePub:
+    Type: AWS::EC2::Instance
+    Properties:
+      ImageId: !Ref EC2ImageId
+      InstanceType: !Ref EC2Type
+      KeyName: WhizKey
+      SecurityGroupIds:
+        - Fn::ImportValue: !Sub ${ExportVpcStackName}-SSHSecurityGroup
+      SubnetId:
+        Fn::ImportValue: !Sub ${ExportVpcStackName}-PublicSubnet

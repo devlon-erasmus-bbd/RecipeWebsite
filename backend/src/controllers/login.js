@@ -25,7 +25,7 @@ async function login(req, res, next) {
 
 
     // private key
-    const privateKey = fs.readFileSync('../private.pem');
+    const privateKey = fs.readFileSync('private.pem');
 
 
     // Create a JWT token

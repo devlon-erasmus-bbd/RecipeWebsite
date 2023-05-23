@@ -2,8 +2,7 @@
 
 const { postRecipe, getRecipeList } = require('../service/index');
 
-require('dotenv').config({path:'../backend/.env'});
-
+require('dotenv').config();
 const searchUrl = process.env.THEMEALDB_BASEURL + "/search.php?s=";
 
 async function searchMealDb(req, res) {

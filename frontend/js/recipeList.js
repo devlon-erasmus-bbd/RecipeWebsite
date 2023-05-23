@@ -21,6 +21,22 @@ function recipeList() {
                 item.appendChild(img);
             }
 
+            const ingred = document.createElement('section');
+            ingred.setAttribute('id', 'ingred');
+            ingred.textContent = `Ingredients: `
+            fetch(`http://localhost:8080/recipes/ingredients?recipeName=${recipe.recipe_name}`)
+            .then(response => response.json())
+            .then(data => {
+                data.forEach(ingredient => {
+                    const ingreds = document.createElement('section');
+                    ingreds.setAttribute('id', 'ingreds');
+                    ingred.style.fontSize = '65%';
+                    ingreds.textContent = `• ${ingredient.ingredient}: ${ingredient.measurement}`;
+                    ingred.appendChild(ingreds);
+                });
+            });
+            item.appendChild(ingred);
+
             recipe.instructions.split("\n").forEach(instr => {
                 const instruction = document.createElement('section');
                 instruction.setAttribute('id', 'instruction');

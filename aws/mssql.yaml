@@ -1,0 +1,71 @@
+AWSTemplateFormatVersion: "2010-09-09"
+
+Parameters:
+  ExportVpcStackName:
+    Description: The name of the vpc stack that exports values
+    Type: String
+
+  EC2ImageId:
+    Default: "ami-06a0cd9728546d178"
+    Description: The imageId of the ec2 instance
+    Type: String
+
+  EC2Type:
+    Default: "t2.micro"
+    Description: The type of the instance
+    Type: String
+  
+  DatabaseUser:
+    AllowedPattern: '[a-zA-Z][a-zA-Z0-9]*'
+    ConstraintDescription: Must begin with a letter and contain only alphanumeric characters
+    Default: dbadmin
+    Description: Username for MySQL database access
+    MaxLength: 16
+    MinLength: 1
+    NoEcho: true
+    Type: String
+
+  DatabasePassword:
+    AllowedPattern: '[a-zA-Z0-9]*'
+    ConstraintDescription: Must contain only alphanumeric characters
+    Default: database1407
+    Description: Password for MySQL database access
+    MaxLength: 41
+    MinLength: 8
+    NoEcho: true
+    Type: String
+
+Resources:
+
+  EC2Instance:
+    Type: AWS::EC2::Instance
+    Properties:
+      ImageId: !Ref EC2ImageId
+      InstanceType: !Ref EC2Type
+      SubnetId:
+        Fn::ImportValue: !Sub ${ExportVpcStackName}-PrivateSubnet
+      SecurityGroupIds:
+        - Fn::ImportValue: !Sub ${ExportVpcStackName}-DBSecurityGroup
+
+  DBSubnetGroup:
+    Type: AWS::RDS::DBSubnetGroup
+    Properties:
+      DBSubnetGroupDescription: "Private subnet group for MSSQL"
+      SubnetIds:
+        - Fn::ImportValue: !Sub ${ExportVpcStackName}-PrivateSubnet
+        - Fn::ImportValue: !Sub ${ExportVpcStackName}-PrivateSubnet1
+
+  DBInstance:
+    Type: AWS::RDS::DBInstance
+    Properties:
+      Engine: sqlserver-ex
+      EngineVersion: "14.00.3281.6.v1"
+      DBInstanceClass: db.t2.micro
+      MasterUsername: !Ref DatabaseUser
+      MasterUserPassword: !Ref DatabasePassword
+      VPCSecurityGroups:
+        - Fn::ImportValue: !Sub ${ExportVpcStackName}-DBSecurityGroup
+      DBSubnetGroupName: !Ref DBSubnetGroup
+      MultiAZ: false
+      AllocatedStorage: 20
+      StorageType: gp2
