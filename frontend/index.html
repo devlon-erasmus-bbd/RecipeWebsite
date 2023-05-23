@@ -7,6 +7,40 @@
 </head>
 <picture class="slideshow-container"></picture>
 <script src="./js/slideshow.js"></script>
+<script type="text/javascript">
+    function handleSearch() {
+        const params = "?search=" + document.test.search.value;
+
+        fetch(`http://localhost:8080/recipes/search${params}`)
+            .then(response => response.json())
+            .then(data => {
+                const list = document.createElement('p');
+                if (data.length == 0) {
+                    const item = document.createElement('section');
+                    item.textContent = `No recipes available!`;
+                    list.appendChild(item);
+                } else {
+                    data.forEach(recipe => {
+                        const item = document.createElement('section');
+                        item.setAttribute('id', 'recipe')
+                        item.textContent = `${recipe.recipe_name} by ${recipe.username}:`;
+
+                        recipe.instructions.split("\n").forEach(instr => {
+                            const instruction = document.createElement('section');
+                            instruction.setAttribute('id', 'instruction');
+                            instruction.textContent = instr;
+                            item.appendChild(instruction);
+                        });
+
+                        list.appendChild(item);
+                    });
+                }
+                document.getElementById('recipes').appendChild(list);
+            }).catch(err => console.error(err));
+        
+        return false;
+    }
+</script>
 <body>
     <article class="banner">
         <p><a href="loginPage.html"><img src="https://cdn-icons-png.flaticon.com/512/6681/6681204.png" alt="" class="login-icon">Login</a></p>
@@ -17,10 +51,12 @@
     </article>
 
     <article class="content">
-        <form action="/recipes/search" style="all: unset;">
-            <input class="search" type="text" name="search" id="recipes" placeholder="Search for recipes">
+        <form onsubmit="return handleSearch()" style="all: unset;" name="test">
+            <input class="search" type="text" name="search" id="search" placeholder="Search for recipes">
         </form>
     </article>
+
+    <section id="recipes"></section>
 
     <article class="centered" id="categories">
         <p style="font-size: larger;">Food Categories:</p>

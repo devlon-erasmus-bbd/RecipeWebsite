@@ -20,6 +20,9 @@ async function searchMealDb(req, res) {
     await fetch(searchUrl + search)
       .then((response) => response.json())
       .then(async (data) => {
+        if (data.meals == null) {
+          return;
+        }
         const myMeal = data.meals[0];
 
         const meal = {};
