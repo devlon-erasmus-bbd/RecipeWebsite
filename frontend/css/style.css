@@ -149,3 +149,18 @@ input[type="submit"] {
 #instruction {
     font-size: medium;
 }
+
+#categories {
+    font-size: larger;
+    font-style: oblique;
+    background-color: #ffffff;
+    min-height: 100%;
+    width: 20%;
+    top: 0;
+    left: 0;
+    margin: auto;
+    z-index: 2;
+    border-radius: 0.6em;
+    margin-top: 4rem;
+    margin-bottom: 1rem;
+}
