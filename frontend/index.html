@@ -14,6 +14,12 @@
         fetch(`http://localhost:8080/recipes/search${params}`)
             .then(response => response.json())
             .then(data => {
+                let rem = document.getElementById('recipe');
+                while (rem !== null) {
+                    rem.remove();
+                    rem = document.getElementById('recipe');
+                }
+
                 const list = document.createElement('p');
                 if (data.length == 0) {
                     const item = document.createElement('section');
@@ -22,7 +28,7 @@
                 } else {
                     data.forEach(recipe => {
                         const item = document.createElement('section');
-                        item.setAttribute('id', 'recipe')
+                        item.setAttribute('id', 'recipe');
                         item.textContent = `${recipe.recipe_name} by ${recipe.username}:`;
 
                         recipe.instructions.split("\n").forEach(instr => {
