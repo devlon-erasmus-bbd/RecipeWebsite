@@ -15,6 +15,12 @@ function recipeList() {
             item.setAttribute('id', 'recipe')
             item.textContent = `${recipe.recipe_name} by ${recipe.username}:`;
 
+            if (recipe.picture_location !== null) {
+                const img = document.createElement('img');
+                img.setAttribute('src', recipe.picture_location);
+                item.appendChild(img);
+            }
+
             recipe.instructions.split("\n").forEach(instr => {
                 const instruction = document.createElement('section');
                 instruction.setAttribute('id', 'instruction');
