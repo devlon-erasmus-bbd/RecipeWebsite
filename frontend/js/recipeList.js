@@ -1,7 +1,7 @@
 function recipeList() {
     const url = new URL(window.location.href);
     const params = url.search;
-    fetch(`http://localhost:8080/recipes/category${params}`)
+    fetch(`http://174.129.61.170:8080/recipes/category${params}`)
     .then(response => response.json())
     .then(data => {
     const list = document.createElement('p');
@@ -24,7 +24,7 @@ function recipeList() {
             const ingred = document.createElement('section');
             ingred.setAttribute('id', 'ingred');
             ingred.textContent = `Ingredients: `
-            fetch(`http://localhost:8080/recipes/ingredients?recipeName=${recipe.recipe_name}`)
+            fetch(`http://174.129.61.170:8080/recipes/ingredients?recipeName=${recipe.recipe_name}`)
             .then(response => response.json())
             .then(data => {
                 data.forEach(ingredient => {

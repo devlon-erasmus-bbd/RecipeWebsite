@@ -9,11 +9,11 @@ function displayUsername() {
         const searchParams = new URLSearchParams(url.search);
         const params = searchParams.get("email");
         if (params != null) {
-            fetch(`http://localhost:8080/user-details/${params}`)
+            fetch(`http://174.129.61.170:8080/user-details/${params}`)
             .then(response => response.json())
             .then(data => {
                 if (data.message) {
-                    usernameElement.innerHTML  = '<a href="/login/page">Please Login!</a>';
+                    usernameElement.innerHTML  = '<a href="loginPage.html">Please Login!</a>';
                 } else {
                     usernameElement.textContent = data.username;
                     sessionStorage.setItem('usernameDisplay', data.username); // Store username in sessionStorage

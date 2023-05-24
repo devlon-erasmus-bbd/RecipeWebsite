@@ -21,7 +21,7 @@ function addRecipe(event) {
         ingredients: ingredients
     }];
 
-    fetch('http://localhost:8080/recipes', {
+    fetch('https://174.129.61.170:8080/recipes', {
     method: 'POST',
     headers: {
         'Content-Type': 'application/json'
