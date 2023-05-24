@@ -6,34 +6,39 @@ function addRecipe(event) {
     const ingredients = getIngredients();
     const instructions = document.getElementById('instructions').value;
     const username = sessionStorage.getItem('usernameDisplay');
+
+    if (username === null) {
+      alert('Please login before posting a recipe');
+      return;
+    }
+
     // Create the request body
-    const requestBody = {
+    const requestBody = [{
         recipeName: recipeName,
         category: category,
         instructions: instructions,
         username: username, 
         ingredients: ingredients
-    };
-    fetch('http://localhost:8080/recipe', {
+    }];
+
+    fetch('http://localhost:8080/recipes', {
     method: 'POST',
     headers: {
         'Content-Type': 'application/json'
     },
     body: JSON.stringify(requestBody)
+
     })
     .then(response => {
-        if (response.status==200) {
-            const email = requestBody.email; // Assuming the server sends the username in the response
-            window.location.href = `index.html?email=${email}`;
+        if (response.status==201) {
+            alert('Recipe Posted!');
+            console.log("Success recipe upload");
         } else {
-            response.json().then(data => {
-                const errorElement = document.getElementById('error-message');
-                errorElement.textContent = `New Recipe Failed: ${data.message}!`;
-            });
+          alert('Posting New Recipe Failed');
         }
     })
     .catch(error => {
-        console.error('Error during login:', error);
+        console.error('Error during post recipe:', error);
         // Handle error scenario, display an error message, etc.
     });
 }
