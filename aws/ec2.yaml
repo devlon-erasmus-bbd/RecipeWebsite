@@ -24,6 +24,7 @@ Resources:
       KeyName: WhizKey
       SecurityGroupIds:
         - Fn::ImportValue: !Sub ${ExportVpcStackName}-SSHSecurityGroup
+        - Fn::ImportValue: !Sub ${ExportVpcStackName}-HttpSecurityGroup
       SubnetId: 
         Fn::ImportValue: !Sub ${ExportVpcStackName}-PrivateSubnet
   
@@ -35,5 +36,6 @@ Resources:
       KeyName: WhizKey
       SecurityGroupIds:
         - Fn::ImportValue: !Sub ${ExportVpcStackName}-SSHSecurityGroup
+        - Fn::ImportValue: !Sub ${ExportVpcStackName}-HttpSecurityGroup
       SubnetId:
         Fn::ImportValue: !Sub ${ExportVpcStackName}-PublicSubnet

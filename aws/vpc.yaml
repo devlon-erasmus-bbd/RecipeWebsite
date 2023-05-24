@@ -101,6 +101,18 @@ Resources:
           ToPort: 22
           CidrIp: "0.0.0.0/0"
   
+  HttpSecurityGroup:
+    Type: AWS::EC2::SecurityGroup
+    Properties:
+      GroupDescription: Security group for HTTP traffic
+      VpcId: !Ref VPC
+      SecurityGroupIngress:
+        - IpProtocol: tcp
+          FromPort: 80
+          ToPort: 80
+          CidrIp: 0.0.0.0/0
+
+  
   DBSecurityGroup:
     Type: AWS::EC2::SecurityGroup
     Properties:
@@ -154,3 +166,10 @@ Outputs:
     Export:
       Name: !Sub ${AWS::StackName}-DBSecurityGroup
     Value: !Ref DBSecurityGroup
+
+  # Export Http Security Group ID
+  HttpSecurityGroup:
+    Description: SSH Security Group ID
+    Export:
+      Name: !Sub ${AWS::StackName}-HttpSecurityGroup
+    Value: !Ref HttpSecurityGroup
