@@ -22,35 +22,38 @@ async function searchMealDb(req, res) {
         if (data.meals == null) {
           return;
         }
-        const myMeal = data.meals[0];
-
-        const meal = {};
-
-        meal.recipeName = myMeal.strMeal;
-        meal.category = myMeal.strCategory;
-        meal.instructions = myMeal.strInstructions;
-        meal.username = 'TheMealDB';
-        meal.pictureLocation = myMeal.strMealThumb;
-
-        let ingredientKey = 'strIngredient1';
-        let measureKey = 'strMeasure1';
-        let count = 0;
-
-        meal.ingredients = [];
-
-        while (myMeal[ingredientKey].length > 1) {
-          const ingredient = {};
-
-          ingredient.name = myMeal[ingredientKey];
-          ingredient.measurement = myMeal[measureKey];
-          meal.ingredients[count] = ingredient;
-          count++;
-          ingredientKey = ingredientKey.replace(count, count + 1);
-          measureKey = measureKey.replace(count, count + 1);
+        for (let i = 0; i < Math.min(5, data.meals.length); i++) {
+          const myMeal = data.meals[i];
+  
+          const meal = {};
+  
+          meal.recipeName = myMeal.strMeal;
+          meal.category = myMeal.strCategory;
+          meal.instructions = myMeal.strInstructions;
+          meal.username = 'TheMealDB';
+          meal.pictureLocation = myMeal.strMealThumb;
+  
+          let ingredientKey = 'strIngredient1';
+          let measureKey = 'strMeasure1';
+          let count = 0;
+  
+          meal.ingredients = [];
+  
+          while (myMeal[ingredientKey].length > 1) {
+            const ingredient = {};
+  
+            ingredient.name = myMeal[ingredientKey];
+            ingredient.measurement = myMeal[measureKey];
+            meal.ingredients[count] = ingredient;
+            count++;
+            ingredientKey = ingredientKey.replace(count, count + 1);
+            measureKey = measureKey.replace(count, count + 1);
+          }
+  
+          result[0] = meal;
+          await postRecipe(result);
         }
-
-        result[0] = meal;
-        await postRecipe(result);
+        
       });
   } catch (err) {
     console.log(err);
