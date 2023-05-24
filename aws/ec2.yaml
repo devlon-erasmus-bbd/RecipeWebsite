@@ -16,7 +16,7 @@ Parameters:
     Type: String
 
 Resources:
-  EC2Instance:
+  EC2InstanceBack:
     Type: AWS::EC2::Instance
     Properties:
       ImageId: !Ref EC2ImageId
@@ -24,16 +24,18 @@ Resources:
       KeyName: WhizKey
       SecurityGroupIds:
         - Fn::ImportValue: !Sub ${ExportVpcStackName}-SSHSecurityGroup
+        - Fn::ImportValue: !Sub ${ExportVpcStackName}-HttpSecurityGroup
       SubnetId: 
-        Fn::ImportValue: !Sub ${ExportVpcStackName}-PrivateSubnet
+        Fn::ImportValue: !Sub ${ExportVpcStackName}-PublicSubnet1
   
-  EC2InstancePub:
-    Type: AWS::EC2::Instance
-    Properties:
-      ImageId: !Ref EC2ImageId
-      InstanceType: !Ref EC2Type
-      KeyName: WhizKey
-      SecurityGroupIds:
-        - Fn::ImportValue: !Sub ${ExportVpcStackName}-SSHSecurityGroup
-      SubnetId:
-        Fn::ImportValue: !Sub ${ExportVpcStackName}-PublicSubnet
+  # EC2InstanceFront:
+  #   Type: AWS::EC2::Instance
+  #   Properties:
+  #     ImageId: !Ref EC2ImageId
+  #     InstanceType: !Ref EC2Type
+  #     KeyName: WhizKey
+  #     SecurityGroupIds:
+  #       - Fn::ImportValue: !Sub ${ExportVpcStackName}-SSHSecurityGroup
+  #       - Fn::ImportValue: !Sub ${ExportVpcStackName}-HttpSecurityGroup
+  #     SubnetId:
+  #       Fn::ImportValue: !Sub ${ExportVpcStackName}-PublicSubnet1
