@@ -1,10 +1,12 @@
-function recipeList() {
+function search() {
     const url = new URL(window.location.href);
-    const params = url.search;
-    fetch(`http://localhost:8080/recipes/category${params}`)
+    const searchParams = new URLSearchParams(url.search);
+    const params = searchParams.get("search");
+    console.log(params);
+    fetch(`http://localhost:8080/recipes/search?search=${params}`)
     .then(response => response.json())
     .then(data => {
-    const list = document.createElement('p');
+        const list = document.createElement('p');
             if (data.length == 0) {
             const item = document.createElement('section');
             item.textContent = `No recipes available!`;
@@ -52,4 +54,4 @@ function recipeList() {
     .catch(err => console.error(err));
 }
 
-document.addEventListener('DOMContentLoaded', recipeList);
+document.addEventListener('DOMContentLoaded', search);

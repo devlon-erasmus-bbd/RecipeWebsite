@@ -165,3 +165,9 @@ input[type="submit"] {
     margin-top: 4rem;
     margin-bottom: 1rem;
 }
+
+img {
+    display: block;
+    width: 50%;
+    margin: 1.8em auto 0 auto;
+}
