@@ -15,7 +15,7 @@ function signup() {
         password: password
     };
   
-    fetch('http://localhost:8080/signup', {
+    fetch('http://174.129.61.170:8080/signup', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'

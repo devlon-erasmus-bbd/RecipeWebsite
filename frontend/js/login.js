@@ -8,7 +8,7 @@ function login(event) {
         email: email,
         password: password
     };
-    fetch('http://localhost:8080/login', {
+    fetch('http://174.129.61.170:8080/login', {
     method: 'POST',
     headers: {
         'Content-Type': 'application/json'
@@ -16,8 +16,12 @@ function login(event) {
     body: JSON.stringify(requestBody)
     })
     .then(response => {
+        console.log(response);
         if (response.status==200) {
             const email = requestBody.email; // Assuming the server sends the username in the response
+           
+            // sessionStorage.setItem('jwt-token', requestBody.username);
+            
             window.location.href = `index.html?email=${email}`;
         } else {
             response.json().then(data => {

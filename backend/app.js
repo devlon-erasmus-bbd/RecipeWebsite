@@ -36,7 +36,7 @@ app.use(function(req, res, next) {
 
 app.use(express.static('public'));
 app.use(bodyParser.json());
-app.use(auth);
+// app.use(auth);
 
 app.post('/login', login);
 app.post('/signup', signup);
