@@ -22,7 +22,7 @@ Parameters:
     Description: Username for MySQL database access
     MaxLength: 16
     MinLength: 1
-    NoEcho: true
+    # NoEcho: true
     Type: String
 
   DatabasePassword:
@@ -32,7 +32,7 @@ Parameters:
     Description: Password for MySQL database access
     MaxLength: 41
     MinLength: 8
-    NoEcho: true
+    # NoEcho: true
     Type: String
 
 Resources:
@@ -43,7 +43,7 @@ Resources:
       ImageId: !Ref EC2ImageId
       InstanceType: !Ref EC2Type
       SubnetId:
-        Fn::ImportValue: !Sub ${ExportVpcStackName}-PrivateSubnet
+        Fn::ImportValue: !Sub ${ExportVpcStackName}-PublicSubnet2
       SecurityGroupIds:
         - Fn::ImportValue: !Sub ${ExportVpcStackName}-DBSecurityGroup
 
@@ -52,8 +52,8 @@ Resources:
     Properties:
       DBSubnetGroupDescription: "Private subnet group for MSSQL"
       SubnetIds:
-        - Fn::ImportValue: !Sub ${ExportVpcStackName}-PrivateSubnet
-        - Fn::ImportValue: !Sub ${ExportVpcStackName}-PrivateSubnet1
+        - Fn::ImportValue: !Sub ${ExportVpcStackName}-PublicSubnet2
+        - Fn::ImportValue: !Sub ${ExportVpcStackName}-PublicSubnet3
 
   DBInstance:
     Type: AWS::RDS::DBInstance
@@ -67,5 +67,6 @@ Resources:
         - Fn::ImportValue: !Sub ${ExportVpcStackName}-DBSecurityGroup
       DBSubnetGroupName: !Ref DBSubnetGroup
       MultiAZ: false
+      PubliclyAccessible: true
       AllocatedStorage: 20
       StorageType: gp2
