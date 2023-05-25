@@ -1,5 +1,5 @@
 function catergoryList() {
-    fetch('http://174.129.61.170:8080/categories/list')
+    fetch('https://174.129.61.170:8080/categories/list')
     .then(response => response.json())
     .then(data => {
     const list = document.createElement('p');

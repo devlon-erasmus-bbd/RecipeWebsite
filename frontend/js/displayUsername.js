@@ -9,7 +9,7 @@ function displayUsername() {
         const searchParams = new URLSearchParams(url.search);
         const params = searchParams.get("email");
         if (params != null) {
-            fetch(`http://174.129.61.170:8080/user-details/${params}`)
+            fetch(`https://174.129.61.170:8080/user-details/${params}`)
             .then(response => response.json())
             .then(data => {
                 if (data.message) {

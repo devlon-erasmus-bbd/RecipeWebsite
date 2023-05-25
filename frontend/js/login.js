@@ -8,7 +8,7 @@ function login(event) {
         email: email,
         password: password
     };
-    fetch('http://174.129.61.170:8080/login', {
+    fetch('https://174.129.61.170:8080/login', {
     method: 'POST',
     headers: {
         'Content-Type': 'application/json'

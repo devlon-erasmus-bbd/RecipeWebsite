@@ -3,7 +3,7 @@ function search() {
     const searchParams = new URLSearchParams(url.search);
     const params = searchParams.get("search");
     console.log(params);
-    fetch(`http://174.129.61.170:8080/recipes/search?search=${params}`)
+    fetch(`https://174.129.61.170:8080/recipes/search?search=${params}`)
     .then(response => response.json())
     .then(data => {
         const list = document.createElement('p');
@@ -26,7 +26,7 @@ function search() {
             const ingred = document.createElement('section');
             ingred.setAttribute('id', 'ingred');
             ingred.textContent = `Ingredients: `
-            fetch(`http://174.129.61.170:8080/recipes/ingredients?recipeName=${recipe.recipe_name}`)
+            fetch(`https://174.129.61.170:8080/recipes/ingredients?recipeName=${recipe.recipe_name}`)
             .then(response => response.json())
             .then(data => {
                 data.forEach(ingredient => {
